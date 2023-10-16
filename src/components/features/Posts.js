@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import SinglePost from '../pages/SinglePost';
+import PostSummary from '../pages/PostSummary';
 import { Row, Col} from 'react-bootstrap';
 
 const Posts = () => {
@@ -10,7 +10,7 @@ const Posts = () => {
     <Row>
       {posts.map((post) => (
         <Col key={post.id} sm={12} md={6} lg={4}>
-          <SinglePost
+          <PostSummary
             id={post.id}
             title={post.title}
             author={post.author}
