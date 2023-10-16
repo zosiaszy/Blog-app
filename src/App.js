@@ -7,8 +7,9 @@ import Header from "./components/views/Header";
 import Footer from "./components/views/Footer";
 import PostAdd from "./components/pages/PostAdd";
 import PostEdit from "./components/pages/PostEdit";
-import SinglePost from "./components/pages/SinglePost";
+import Post from "./components/pages/Post";
 import { Container } from 'react-bootstrap';
+
 
 
 const App = () => {
@@ -18,11 +19,12 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/post/:id" element={<SinglePost />} />
+          <Route path="/post/:id" element={<Post />} />
           <Route path="/post/add" element={<PostAdd />} />
           <Route path="/post/edit/:id" element={<PostEdit />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
+        
         </Routes>
         <Footer />
       </Container>
