@@ -20,9 +20,9 @@ const Post = () => {
   };
 
   const handleEdit = () => {
-    
-    navigate('/addpost');
-  };
+  navigate(`/post/edit/${post.id}`);
+};
+
 
   if (!post) {
     return <Navigate to="/" />;
