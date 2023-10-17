@@ -1,2 +1,2 @@
-#LINK DO PROJEKTU CRUD APP BLOG: 
-crud-app.zosiaszyposzyns.repl.co
+### LINK DO PROJEKTU CRUD APP BLOG: 
+https://crud-app.zosiaszyposzyns.repl.co/
