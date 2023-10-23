@@ -1,4 +1,4 @@
-import React from "react"; // Dodaj import React
+import React from "react"; 
 
 const About = () => {
 return(
