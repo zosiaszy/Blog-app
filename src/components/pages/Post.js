@@ -12,7 +12,7 @@ const Post = () => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleDelete = () => {
     dispatch(removePost(post.id));
@@ -20,14 +20,17 @@ const Post = () => {
   };
 
   const handleEdit = () => {
-  navigate(`/post/edit/${post.id}`);
-};
-
+    navigate(`/post/edit/${post.id}`);
+  };
 
   if (!post) {
     return <Navigate to="/" />;
   }
 
+  
+  const formattedDate = new Date(post.publishedDate).toLocaleDateString();
+
+  
   return (
     <div className="container">
       <div className="row justify-content-center">
@@ -46,9 +49,9 @@ const Post = () => {
                 </div>
               </div>
               <p className="card-text font-weight-bold">Author: {post.author}</p>
-              <p className="card-text font-weight-bold">Published Date: {post.publishedDate}</p>
+              <p className="card-text font-weight-bold">Published Date: {formattedDate}</p>
               <p className="card-text">{post.shortDescription}</p>
-              <p className="card-text">{post.content}</p>
+              <p className="card-text" dangerouslySetInnerHTML={{ __html: post.content }} />
             </div>
           </div>
         </div>
@@ -58,9 +61,7 @@ const Post = () => {
         <Modal.Header closeButton>
           <Modal.Title>Confirm Deletion</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          Are you sure you want to delete this post?
-        </Modal.Body>
+        <Modal.Body>Are you sure you want to delete this post?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Cancel
