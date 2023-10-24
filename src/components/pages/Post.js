@@ -29,6 +29,7 @@ const Post = () => {
 
   
   const formattedDate = new Date(post.publishedDate).toLocaleDateString();
+  
 
   
   return (
