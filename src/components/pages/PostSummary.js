@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const PostSummary = ({ title, shortDescription, content, author, publishedDate, id}) => {
+
+
+
+const PostSummary = ({ title, shortDescription, content, author, publishedDate, id, category}) => {
   
   const formattedDate = new Date(publishedDate).toLocaleDateString();
 
@@ -16,6 +20,7 @@ const PostSummary = ({ title, shortDescription, content, author, publishedDate, 
         <h2 className="card-title">{title}</h2>
         <p className="card-text font-weight-bold">Author: {author}</p>
         <p className="card-text font-weight-bold">Published Date: {formattedDate}</p>
+        <p className="card-text font-weight-bold">Category: {category}</p>
         <p className="card-text">{shortDescription}</p>
         <p className="card-text" dangerouslySetInnerHTML={{ __html: content }} />
 
