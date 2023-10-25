@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button, Modal } from 'react-bootstrap';
 import { removePost } from '../../redux/postsRedux';
 import { Navigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Post = () => {
   const { id } = useParams();
@@ -51,6 +52,7 @@ const Post = () => {
               </div>
               <p className="card-text font-weight-bold">Author: {post.author}</p>
               <p className="card-text font-weight-bold">Published Date: {formattedDate}</p>
+              <p className="card-text font-weight-bold">Category: {post.category}</p>
               <p className="card-text">{post.shortDescription}</p>
               <p className="card-text" dangerouslySetInnerHTML={{ __html: post.content }} />
             </div>
