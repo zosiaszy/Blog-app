@@ -7,6 +7,9 @@ import { formatDate } from '../../utils/dateToStr';
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import { useSelector} from 'react-redux';
+import initialState from '../../redux/initialState';
 
 const PostForm = ({ action, actionText, ...props }) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -18,8 +21,15 @@ const PostForm = ({ action, actionText, ...props }) => {
   const [shortDescription, setShortDescription] = useState(props.shortDescription || '');
   const [content, setContent] = useState(props.content || '');
 
+  const [category, setCategory] = useState(props.category || '');
+
   const [contentError, setContentError] = useState(false);
   const [dateError, setDateError] = useState(false);
+  const [categoryError, setCategoryError] = useState(false);
+const posts = useSelector(state => state.posts);
+const { id } = useParams();
+  const post = posts.find(post => post.id === id);
+  
 
   useEffect(() => {
     const parsedDate = Date.parse(props.publishedDate);
@@ -41,10 +51,15 @@ const PostForm = ({ action, actionText, ...props }) => {
       } else {
         setDateError(false);
       }
+      if (!category) {
+        setCategoryError(true);
+      } else {
+        setCategoryError(false);
+      }
       return;
     }
 
-    action({ ...data, content });
+    action({ ...data, content, category });
   };
 
   return (
@@ -101,6 +116,29 @@ const PostForm = ({ action, actionText, ...props }) => {
               {errors.shortDescription && <span>This field is required</span>}
             </Form.Group>
 
+            <Form.Group controlId="category" className="mt-3">
+  <Form.Label>Category</Form.Label>
+  <Form.Control
+    as="select"
+    {...register('category', { required: true })}
+    value={category}
+    onChange={e => setCategory(e.target.value)}
+  >
+    <option value="">Select a category</option>
+    {initialState.categories.map((cat) => (
+      <option key={cat} value={cat}>
+        {cat}
+      </option>
+    ))}
+  </Form.Control>
+  {categoryError && <span>Category is required</span>}
+</Form.Group>
+
+
+
+
+
+
             <div className="form-group mt-5">
               <label>Content</label>
               <ReactQuill
@@ -110,6 +148,8 @@ const PostForm = ({ action, actionText, ...props }) => {
               />
               {contentError && <span>Content is required</span>}
             </div>
+
+
 
             <Button type="submit" className="btn btn-primary mt-5">
               {actionText}
