@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PostSummary from '../pages/PostSummary';
 import { Row, Col} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Posts = () => {
   const posts = useSelector((state) => state.posts);
@@ -15,7 +17,9 @@ const Posts = () => {
             title={post.title}
             author={post.author}
             publishedDate={post.publishedDate}
+            category={post.category}
             shortDescription={post.shortDescription}
+
             content={post.content}
             
             
